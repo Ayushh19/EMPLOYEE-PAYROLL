@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee - Payroll Form</title>
+    <link rel="stylesheet" href="../style.css/registration_form.css">
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://png.pngtree.com/png-vector/20190316/ourmid/pngtree-employee-icon-design-template-vector-isolated-png-image_856368.jpg" alt="Employee Payroll Logo" class="logo">
+            <span class="brand-name" onclick="window.location.href='display_page.html'">EMPLOYEE PAYROLL</span>
+        </div>
+
+        <!-- Form -->
+        <div class="form-container">
+            <h2 class="form-title">Employee Payroll Form</h2>
+            <form id="employeeForm">
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="form-group">
+                    <label>Profile image</label>
+                    <div class="avatar-group">
+                        <label class="avatar-option">
+                            <input type="radio" name="profile" value="1" required>
+                            <img src="https://thumbs.dreamstime.com/b/vector-illustration-young-man-face-short-brown-hair-calm-expression-cartoon-male-character-shown-front-337525919.jpg" alt="Avatar 1" class="avatar-image">
+                        </label>
+                        <label class="avatar-option">
+                            <input type="radio" name="profile" value="2">
+                            <img src="https://thumbs.dreamstime.com/b/cartoon-woman-face-bun-hairstyle-image-features-clear-lines-detailed-shading-simple-facial-expression-cartoon-337525390.jpg" alt="Avatar 2" class="avatar-image">
+                        </label>
+                       
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="gender-group">
+                        <label class="gender-option">
+                            <input type="radio" name="gender" value="male" required>
+                            <span>Male</span>
+                        </label>
+                        <label class="gender-option">
+                            <input type="radio" name="gender" value="female">
+                            <span>Female</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Department -->
+                <div class="form-group">
+                    <label>Department</label>
+                    <div class="department-group">
+                        <label class="department-option">
+                            <input type="radio" name="department" value="hr">
+                            <span>HR</span>
+                        </label>
+                        <label class="department-option">
+                            <input type="radio" name="department" value="sales">
+                            <span>Sales</span>
+                        </label>
+                        <label class="department-option">
+                            <input type="radio" name="department" value="finance">
+                            <span>Finance</span>
+                        </label>
+                        <label class="department-option">
+                            <input type="radio" name="department" value="engineer">
+                            <span>Engineer</span>
+                        </label>
+                        <label class="department-option">
+                            <input type="radio" name="department" value="others">
+                            <span>Others</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Salary -->
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <select id="salary" class="form-control" required>
+                        <option value="">Select Salary</option>
+                        <option value="10000">₹ 10,000</option>
+                        <option value="20000">₹ 20,000</option>
+                        <option value="30000">₹ 30,000</option>
+                        <option value="40000">₹ 40,000</option>
+                    </select>
+                </div>
+
+                <!-- Start Date -->
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <div class="date-group">
+                        <select class="form-control" name="day" required>
+                            <option value="">Day</option>
+                            
+                        </select>
+                        <select class="form-control" name="month" required>
+                            <option value="">Month</option>
+                            
+                        </select>
+                        <select class="form-control" name="year" required>
+                            <option value="">Year</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" class="form-control"></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <div class="cancel-wrapper">
+                    <button type="button" class="btn btn-cancel" onclick="window.location.href='display_page.html'">Cancel</button>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                    <button type="reset" class="btn btn-reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../app.js/registration_form.js" defer></script>
+</body>
+</html>

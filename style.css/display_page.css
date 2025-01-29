@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  padding: 24px;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Subheader Styles */
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  color: #4A5568;
+  font-size: 24px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-btn {
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.add-btn {
+  background-color: #8DC63F;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Table Styles */
+.table-container {
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #4A5568;
+  color: white;
+  text-align: left;
+  padding: 16px;
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.employee-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.employee-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.department-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  background-color: rgba(141, 198, 63, 0.1);
+  color: #8DC63F;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #718096;
+}
+
+/* Hover States */
+.search-btn:hover,
+.add-btn:hover,
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+tr:hover {
+  background-color: #f1f5f9;
+}

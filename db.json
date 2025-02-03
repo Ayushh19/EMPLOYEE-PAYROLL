@@ -1,0 +1,15 @@
+{
+  "employees": [
+    {
+      "id": 1738580703344,
+      "name": "Ayush Mhaskar",
+      "gender": "male",
+      "departments": [
+        "hr"
+      ],
+      "salary": "20000",
+      "startDate": "15 September 2025",
+      "notes": ""
+    }
+  ]
+}

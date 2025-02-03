@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Payroll</title>
     <link rel="stylesheet" href="../style/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
-   
-
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -22,7 +20,7 @@
             <h1 class="page-title">Employee Details</h1>
             <div class="actions">
                 <button class="search-btn">🔍</button>
-                <button class="add-btn" onclick="window.location.href='registration_form.html'">+ Add User</button>
+                <a href="registration_form.html" class="add-btn">+ Add User</a>
             </div>
         </div>
 
@@ -40,129 +38,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="employee-info">
-                                <img src="/placeholder.svg" alt="Employee" class="employee-avatar">
-                                <span>Ayush mhaskar</span>
-                            </div>
-                        </td>
-                        <td>Male</td>
-                        <td>
-                            <div class="department-tags">
-                                <span class="tag">Sales</span>
-                                <span class="tag">HR</span>
-                                <span class="tag">Finance</span>
-                            </div>
-                        </td>
-                        <td>₹ 10,000</td>
-                        <td>29 Oct 2019</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">🗑️</button>
-                                <button class="action-btn">✏️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="employee-info">
-                                <img src="/placeholder.svg" alt="Employee" class="employee-avatar">
-                                <span>Harsh koli </span>
-                            </div>
-                        </td>
-                        <td>Male</td>
-                        <td>
-                            <div class="department-tags">
-                                <span class="tag">Sales</span>
-                                <span class="tag">HR</span>
-                                <span class="tag">Finance</span>
-                            </div>
-                        </td>
-                        <td>₹ 10,000</td>
-                        <td>29 Oct 2019</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">🗑️</button>
-                                <button class="action-btn">✏️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="employee-info">
-                                <img src="/placeholder.svg" alt="Employee" class="employee-avatar">
-                                <span>Harsh bhagat</span>
-                            </div>
-                        </td>
-                        <td>Male</td>
-                        <td>
-                            <div class="department-tags">
-                                <span class="tag">Sales</span>
-                                <span class="tag">HR</span>
-                                <span class="tag">Finance</span>
-                            </div>
-                        </td>
-                        <td>₹ 10,000</td>
-                        <td>29 Oct 2019</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">🗑️</button>
-                                <button class="action-btn">✏️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="employee-info">
-                                <img src="/placeholder.svg" alt="Employee" class="employee-avatar">
-                                <span>Harsh bhagat</span>
-                            </div>
-                        </td>
-                        <td>Male</td>
-                        <td>
-                            <div class="department-tags">
-                                <span class="tag">Sales</span>
-                                <span class="tag">HR</span>
-                                <span class="tag">Finance</span>
-                            </div>
-                        </td>
-                        <td>₹ 10,000</td>
-                        <td>29 Oct 2019</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">🗑️</button>
-                                <button class="action-btn">✏️</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="employee-info">
-                                <img src="/placeholder.svg" alt="Employee" class="employee-avatar">
-                                <span>Harsh bhagat</span>
-                            </div>
-                        </td>
-                        <td>Male</td>
-                        <td>
-                            <div class="department-tags">
-                                <span class="tag">Sales</span>
-                                <span class="tag">HR</span>
-                                <span class="tag">Finance</span>
-                            </div>
-                        </td>
-                        <td>₹ 10,000</td>
-                        <td>29 Oct 2019</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="action-btn">🗑️</button>
-                                <button class="action-btn">✏️</button>
-                            </div>
-                        </td>
-                    </tr>
+                    <!-- Employees will be loaded here dynamically -->
                 </tbody>
             </table>
         </div>
     </div>
+    <script src="../script/dashboard.js"></script>
 </body>
 </html>

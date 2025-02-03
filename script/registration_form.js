@@ -1,72 +1,119 @@
+// registration_form.js
+$(document).ready(() => {
+  populateDateDropdowns()
+  checkForEditMode()
+  $("#employeeForm").on("submit", handleFormSubmit)
+})
 
-        
-            document.getElementById('employeeForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-            
-                // Get form values
-                const name = document.getElementById('name').value;
-                const gender = document.querySelector('input[name="gender"]:checked').value;
-                const departments = Array.from(document.querySelectorAll('input[name="department"]:checked'))
-                    .map(checkbox => checkbox.value)
-                    .join(', '); // Convert array to a comma-separated string
-                const salary = document.getElementById('salary').value;
-                const startDate = `${document.querySelector('select[name="day"]').value} ${
-                    document.querySelector('select[name="month"]').value} ${
-                    document.querySelector('select[name="year"]').value}`;
-                const profileImage = document.querySelector('input[name="profile"]:checked').value;
-                const notes = document.getElementById('notes').value;
-            
-                // Convert form data to a string
-                const employeeData = `Name: ${name}, Gender: ${gender}, Department: ${departments}, Salary: ${salary}, Start Date: ${startDate}, Profile Image: ${profileImage}, Notes: ${notes}`;
-            
-                // Get existing data or initialize an empty string
-                let storedEmployees = localStorage.getItem('employees') || '';
-                
-                // Append new data
-                 storedEmployees += employeeData + '\n';  
-                
-                // Store updated data
-                localStorage.setItem('employees', storedEmployees);
+function populateDateDropdowns() {
+  const daySelect = $('select[name="day"]')
+  const monthSelect = $('select[name="month"]')
+  const yearSelect = $('select[name="year"]')
 
-                console.log('Stored Employee Data:', localStorage.getItem('employees'));
-            
-               
-            });        
+  // Populate days
+  for (let i = 1; i <= 31; i++) {
+    daySelect.append(`<option value="${i}">${i}</option>`)
+  }
 
-    // Populate date dropdowns
-    function populateDates() {
-        const daySelect = document.querySelector('select[name="day"]');
-        const monthSelect = document.querySelector('select[name="month"]');
-        const yearSelect = document.querySelector('select[name="year"]');
+  // Populate months
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+  months.forEach((month) => {
+    monthSelect.append(`<option value="${month}">${month}</option>`)
+  })
 
-        // Populate days
-        for (let i = 1; i <= 31; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = i;
-            daySelect.appendChild(option);
-        }
+  // Populate years
+  const currentYear = new Date().getFullYear()
+  for (let i = currentYear; i >= currentYear - 5; i--) {
+    yearSelect.append(`<option value="${i}">${i}</option>`)
+  }
+}
 
-        // Populate months
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                       'July', 'August', 'September', 'October', 'November', 'December'];
-        months.forEach((month, index) => {
-            const option = document.createElement('option');
-            option.value = month;
-            option.textContent = month;
-            monthSelect.appendChild(option);
-        });
-
-        // Populate years
-        const currentYear = new Date().getFullYear();
-        for (let i = currentYear; i >= currentYear - 5; i--) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = i;
-            yearSelect.appendChild(option);
-        }
+function checkForEditMode() {
+  const urlParams = new URLSearchParams(window.location.search)
+  if (urlParams.get('edit') === 'true') {
+    // We're in edit mode
+    const employeeData = {
+      id: urlParams.get('id'),
+      name: urlParams.get('name'),
+      gender: urlParams.get('gender'),
+      departments: urlParams.get('departments').split(','),
+      salary: urlParams.get('salary'),
+      startDate: urlParams.get('startDate'),
+      notes: urlParams.get('notes')
     }
 
-    // Call on page load
-    populateDates();
+    // Populate form with employee data
+    $("#name").val(employeeData.name)
+    $(`input[name="gender"][value="${employeeData.gender}"]`).prop('checked', true)
+    employeeData.departments.forEach(dept => {
+      $(`input[name="department"][value="${dept}"]`).prop('checked', true)
+    })
+    $("#salary").val(employeeData.salary)
     
+    // Handle start date
+    const [day, month, year] = employeeData.startDate.split(' ')
+    $('select[name="day"]').val(day)
+    $('select[name="month"]').val(month)
+    $('select[name="year"]').val(year)
+    
+    $("#notes").val(employeeData.notes)
+
+    // Update form title and submit button
+    $(".form-title").text("Edit Employee")
+    $(".btn-submit").text("Update")
+  }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault()
+
+  const urlParams = new URLSearchParams(window.location.search)
+  const isEdit = urlParams.get('edit') === 'true'
+  const employeeId = urlParams.get('id')
+
+  const formData = {
+    id: isEdit ? Number(employeeId) : Date.now(),
+    name: $("#name").val(),
+    gender: $('input[name="gender"]:checked').val(),
+    departments: $('input[name="department"]:checked')
+      .map(function () {
+        return this.value
+      })
+      .get(),
+    salary: $("#salary").val(),
+    startDate: `${$('select[name="day"]').val()} ${$('select[name="month"]').val()} ${$('select[name="year"]').val()}`,
+    notes: $("#notes").val(),
+  }
+
+  const url = isEdit 
+    ? `http://localhost:3000/employees/${employeeId}`
+    : "http://localhost:3000/employees"
+
+  $.ajax({
+    url: url,
+    type: isEdit ? "PUT" : "POST",
+    contentType: "application/json",
+    data: JSON.stringify(formData),
+    success: (response) => {
+      console.log(`Employee ${isEdit ? 'updated' : 'added'} successfully:`, response)
+      window.location.href = "dashboard.html"
+    },
+    error: (error) => {
+      console.error("Error:", error)
+      alert(`Error ${isEdit ? 'updating' : 'adding'} employee. Please try again.`)
+    },
+  })
+}
